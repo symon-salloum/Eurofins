@@ -8,6 +8,7 @@ namespace BusinessLayer.Domain.ToDoTask
         {
             InitializeFields(toDoTaskDTO);
         }
+        public ToDoTask() { }
 
         public int Id { get; set; }
 
