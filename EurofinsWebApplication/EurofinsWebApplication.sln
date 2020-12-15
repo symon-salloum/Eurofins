@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{86EB17AA-9ADA-4266-88A1-1102E0F42F3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eurofins.UnitTest", "Eurofins.UnitTest\Eurofins.UnitTest.csproj", "{BEE26D1F-2BCB-410D-A55F-EBACA63ABFF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{86EB17AA-9ADA-4266-88A1-1102E0F42F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86EB17AA-9ADA-4266-88A1-1102E0F42F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86EB17AA-9ADA-4266-88A1-1102E0F42F3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEE26D1F-2BCB-410D-A55F-EBACA63ABFF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEE26D1F-2BCB-410D-A55F-EBACA63ABFF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEE26D1F-2BCB-410D-A55F-EBACA63ABFF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEE26D1F-2BCB-410D-A55F-EBACA63ABFF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
