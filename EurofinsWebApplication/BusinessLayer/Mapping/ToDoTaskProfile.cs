@@ -8,6 +8,7 @@ namespace BusinessLayer.Mapping
     {
         public ToDoTaskProfile()
         {
+            CreateMap<ToDoTask, ToDoTaskDTO>();
             CreateMap<ToDoTaskDTO, ToDoTask>();
         }
     }

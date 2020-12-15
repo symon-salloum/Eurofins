@@ -38,24 +38,11 @@ namespace BusinessLayer.Service.ToDoTask
             return _mapper.Map<ToDoTaskDTO>(toDoTask);
         }
 
-        public ToDoTaskDTO Delete(int id)
-        {
-            var toDoTask = _toDoTaskRepository.GetById(id);
-
-            if (toDoTask == null) throw new DeleteEntityException("Error deleting toDoTask");
-
-            _toDoTaskRepository.Delete(toDoTask);
-
-            _unitOfWork.Commit();
-
-            return _mapper.Map<ToDoTaskDTO>(toDoTask);
-        }
-
         public void Update(ToDoTaskDTO toDoTaskDTO)
         {
             var toDoTask = _toDoTaskRepository.GetById(toDoTaskDTO.Id);
 
-            if (toDoTask == null) throw new UpdateEntityException("Error updating toDoTask");
+            if (toDoTask == null) throw new UpdateEntityException("Error updating toDoTask" + toDoTaskDTO.Id);
 
             toDoTask.InitializeFields(toDoTaskDTO);
 
@@ -64,16 +51,33 @@ namespace BusinessLayer.Service.ToDoTask
             _unitOfWork.Commit();
         }
 
+        public ToDoTaskDTO Delete(int id)
+        {
+            var toDoTask = _toDoTaskRepository.GetById(id);
+
+            if (toDoTask == null) throw new DeleteEntityException("Error deleting toDoTask" + id);
+
+            _toDoTaskRepository.Delete(toDoTask);
+
+            _unitOfWork.Commit();
+
+            return _mapper.Map<ToDoTaskDTO>(toDoTask);
+        }
+
         public IEnumerable<ToDoTaskDTO> GetAll()
         {
-            return _toDoTaskRepository.GetAll().ProjectTo<ToDoTaskDTO>(_mapperConfig);
+            var toDoTasks = _toDoTaskRepository.GetAll().ProjectTo<ToDoTaskDTO>(_mapperConfig);
+
+            if (toDoTasks == null) throw new GetEntityException("Error getting all toDoTasks");
+
+            return toDoTasks;
         }
 
         public ToDoTaskDTO GetById(int id)
         {
             var toDoTask = _toDoTaskRepository.GetById(id);
 
-            if (toDoTask == null) throw new GetEntityException("Error getting toDoTask");
+            if (toDoTask == null) throw new GetEntityException("Error getting toDoTask by id");
 
             return _mapper.Map<ToDoTaskDTO>(toDoTask);
         }
@@ -85,19 +89,19 @@ namespace BusinessLayer.Service.ToDoTask
             if (filter.IsStricktFilter)
             {
                 toDoTasks = _toDoTaskRepository.Where(t =>
-                t.Title.ToLowerInvariant().Contains(filter.Title) &&
-                t.Description.ToLowerInvariant().Contains(filter.Description) &&
+                t.Title.ToLower().Contains(filter.Title) &&
+                t.Description.ToLower().Contains(filter.Description) &&
                 t.IsCompleted == filter.IsCompleted);
             }
             else
             {
                 toDoTasks = _toDoTaskRepository.Where(t =>
-                t.Title.ToLowerInvariant().Contains(filter.Title) ||
-                t.Description.ToLowerInvariant().Contains(filter.Description) ||
+                t.Title.ToLower().Contains(filter.Title) ||
+                t.Description.ToLower().Contains(filter.Description) ||
                 t.IsCompleted == filter.IsCompleted);
             }
 
-            if (toDoTasks == null) throw new GetEntityException("Error getting Multiple toDoTasks");
+            if (toDoTasks == null) throw new GetEntityException("Error getting Multiple toDoTasks using filter ");
 
             return toDoTasks.ProjectTo<ToDoTaskDTO>(_mapperConfig);
 

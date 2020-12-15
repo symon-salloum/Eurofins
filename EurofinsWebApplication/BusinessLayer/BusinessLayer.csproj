@@ -162,6 +162,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Disposable.cs" />
     <Compile Include="Domain\ToDoTask\ToDoTask.cs" />
     <Compile Include="DTO\ToDoTaskDTO.cs" />
     <Compile Include="Exceptions\DeleteEntityException.cs" />
